@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Téléverser une vidéo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_32,h_32/https://personnalite.fr/wp-content/uploads/2021/06/cropped-Picto-Personnalite-32x32.png" sizes="32x32">
+    <link rel="icon" href="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_192,h_192/https://personnalite.fr/wp-content/uploads/2021/06/cropped-Picto-Personnalite-192x192.png" sizes="192x192">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+    <h2>Bonjour {{ username }}</h2>
+    <form method="post" action="{{ url_for('upload') }}" enctype="multipart/form-data">
+        <label for="id_session">ID Client :</label>
+        <input type="text" id="id_session" name="id_session" required >
+        <br><br>
+        <label for="theme">Catégorie  de la session :</label>
+        <select id="theme" name="theme" required>
+            <option value="Pitch">Pitch</option>
+            <option value="Managériale">Managériale</option>
+            <option value="Commerciale">Commerciale</option>
+        </select>
+        <br><br>      
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="name"  >
+        <br><br>
+        <label for="company">Entreprise :</label>
+        <input type="text" id="company" name="company"  >
+        <br><br>
+
+        <div class="file-upload-container">
+            <input type="file" name="video" accept="video/*" id="video" onchange="updateFileName()">
+            <label for="video" class="file-upload-btn">Choisir un fichier...</label>
+            <span id="file-name"></span> <!-- Element to display the file name -->
+        </div>
+        
+        <input type="submit" value="Téléverser" class="submit-btn">
+
+        
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  
+  {% if error_message %}
+  <div>{{ error_message }}</div>
+  {% endif %}
+    <form action="{{ url_for('sessions') }}" method="get">
+        <button type="submit">Existing Clients</button>
+    </form>
+
+    <!-- Conditionally display the Create New Account button for superadmins -->
+    {% if session.get('role') == 'superadmin' %}
+    <form action="{{ url_for('create_account') }}" method="get">
+        <button type="submit">Create New Account</button>
+    </form>
+    {% endif %}
+      
+     
+    
+</body>
+</html>

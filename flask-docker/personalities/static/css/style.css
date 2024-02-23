@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Toma+Sans:wght@400;500;600&display=swap');
+
+body {
+    font-family: 'Work Sans', sans-serif; /* Updated font family */
+    background-color: #f6f6f6; /* Updated to GRIS 5% */
+    color: #000000; /* Updated to NOIR */
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* NOIR shadow with reduced opacity */
+    width: 80%;
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+
+h1, h2 {
+    color: #f39200; /* Updated to SAFRAN */
+    margin-bottom: 20px;
+    font-family: 'Toma Sans', sans-serif; /* Updated font for headings */
+}
+
+.form-group {
+    margin: 10px 0;
+}
+
+.input-group {
+    display: block;
+    margin: 10px auto;
+    width: 100%;
+}
+
+input[type="text"], input[type="password"], input[type="file"], input[type="date"] {
+    padding: 10px;
+    width: calc(100% - 20px);
+    border: 1px solid #ededed; /* Updated to GRIS 10% */
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"], .btn, button {
+    background-color: #f39200; /* Updated to SAFRAN */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 90%;
+    margin: 20px 20px;
+}
+
+input[type="submit"]:hover, .btn:hover, button {
+    background-color: #e68300; /* A slightly darker SAFRAN for hover effect */
+}
+
+.data-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #ededed; /* Updated to GRIS 10% */
+    text-align: left;
+    padding: 8px;
+}
+
+.data-table th {
+    background-color: #f39200; /* Updated to SAFRAN */
+    color: white;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #fff7ea; /* Updated to SAFRAN PASTEL LÉGER */
+}
+
+.radar-plot {
+    display: block;
+    margin: 20px auto;
+}
+
+.info-section, .data-table-container, .download-buttons, button {
+    width: 90%;
+    margin: 20px 20px;
+}
+
+.logo {
+    width: 120px; /* Adjust size as needed */
+    display: block;
+    margin: 0 auto 20px; /* Center logo and add space below */
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f6f6f6; /* Light grey background */
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f6f6f6;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.button_social_group a {
+    display: inline-block;
+    margin: 0 10px;
+    color: #000; /* Adjust color as needed */
+}
+
+.button_social_group a:hover {
+    color: #f39200; /* Adjust hover color as needed */
+}
+
+.screen-reader-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+.fa.fa-twitter{
+	font-family:sans-serif;
+}
+.fa.fa-twitter::before{
+	content:"𝕏";
+	font-size:1.2em;
+}
+
+/* Style for label to match the form aesthetics */
+label {
+    font-family: 'Work Sans', sans-serif;
+    color: #000000; /* NOIR for text */
+    margin-bottom: 5px; /* Space below the label */
+    display: block; /* Ensure it takes its own line */
+    text-align: left; /* Align to the left */
+    margin-left: 20px; /* Align with input fields */
+}
+
+/* Enhanced style for the select dropdown */
+select {
+    font-family: 'Work Sans', sans-serif;
+    padding: 10px;
+    width: calc(100% - 40px); /* Adjust width to match input fields */
+    margin: 10px 20px; /* Align with the rest of the form elements */
+    border: 1px solid #ededed; /* GRIS 10% for border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: white; /* Background color */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    cursor: pointer; /* Indicate it's a dropdown */
+}
+
+/* Style for options inside the dropdown for consistency */
+select option {
+    padding: 10px; /* Padding for options */
+}
+
+/* Adjust the focus state of the select element for accessibility and visual feedback */
+select:focus {
+    border-color: #f39200; /* SAFRAN for focus */
+    outline: none; /* Custom focus styles, remove default outline */
+    box-shadow: 0 0 5px rgba(243, 146, 0, 0.5); /* SAFRAN shadow for a glowing effect */
+}
+
+.file-upload-container {
+    margin: 15px 25px; /* Adjusted to add vertical margin only */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start of the container */
+}
+
+input[type="file"] {
+    display: none; /* Keep the default file input hidden */
+}
+
+.file-upload-btn{
+    display: inline-block; /* Change to inline-block for a smaller width */
+    width: auto; /* Adjust the width as needed, or use 'auto' for content-based sizing */
+    padding: 10px 20px; /* Adjust padding as needed */
+    margin: 10px 0; /* Adds space above and below the button */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Work Sans', sans-serif;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box; /* Ensure padding is included in the width calculation */
+}
+
+.file-upload-btn {
+    background-color: #f39200;
+}
+
+.file-upload-btn:hover {
+    background-color: #f39200;
+}
+.home-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 0;
+    background-color: #f39200; /* Bootstrap primary color */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.home-button:hover {
+    background-color: #f39200; /* Darker shade for hover effect */
+}

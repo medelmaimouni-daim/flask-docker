@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <link rel="icon" href="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_32,h_32/https://personnalite.fr/wp-content/uploads/2021/06/cropped-Picto-Personnalite-32x32.png" sizes="32x32">
+    <link rel="icon" href="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_192,h_192/https://personnalite.fr/wp-content/uploads/2021/06/cropped-Picto-Personnalite-192x192.png" sizes="192x192">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+
+</head>
+<body>
+    <h1>Résultats de l'analyse</h1>
+    <div class="info-section">
+        <p><b>ID Client:</b> {{ form_data.id_session }}</p>
+        <p><b>Catégorie de la session:</b> {{ form_data.theme }}</p>
+        <p><b>Session: </b> {{ current_session_number }}</p>
+
+        {% if form_data.name %}
+        <p><b>Nom:</b> {{ form_data.name }}</p>
+        {% endif %}
+        {% if form_data.company %}
+            <p><b>Entreprise:</b> {{ form_data.company }}</p>
+        {% endif %}
+        </div>
+    <a href="{{ url_for('upload') }}" class="home-button">Accueil</a>
+    <img src="{{ url_for('static', filename=axes_radar_plot_path) }}" alt="Radar Plot" class="radar-plot">
+
+    <div class="data-table-container">
+        {{ html_table|safe }}
+    </div>
+    
+    <img src="{{ url_for('static', filename=radar_plot_path) }}" alt="Radar Plot" class="radar-plot">
+
+    <div class="download-buttons">
+
+        <a href="{{ url_for('download_pdf') }}" class="btn btn-primary">Télécharger en PDF</a>
+    </div>
+
+    
+</body>
+</html>

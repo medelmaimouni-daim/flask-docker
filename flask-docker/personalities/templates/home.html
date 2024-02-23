@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_32,h_32/https://personnalite.fr/wp-content/uploads/2021/06/cropped-Picto-Personnalite-32x32.png" sizes="32x32">
+    <link rel="icon" href="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_192,h_192/https://personnalite.fr/wp-content/uploads/2021/06/cropped-Picto-Personnalite-192x192.png" sizes="192x192">
+    <!-- Include Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Video Analysis App Logo" class="logo">
+        <section class="app-description">
+            <h2><strong>Découvrez l'Innovation en Analyse Vidéo avec Personnalite.fr</strong></h2>
+            <p>Dans un monde où le contenu vidéo règne en maître, Personnalite.fr se distingue comme la solution ultime pour décrypter, analyser et comprendre vos médias comme jamais auparavant. Notre application, conçue avec la précision et l'expertise à l'esprit, offre une suite complète d'outils d'analyse vidéo, rendant chaque aspect de votre contenu accessible et exploitable.</p>
+            <h3><strong>Une Technologie Avancée à Votre Service</strong></h3>
+            <p>Grâce à notre plateforme basée sur l'IA, Personnalite.fr met à disposition des professionnels et des passionnés de vidéo une technologie de pointe pour l'extraction audio, la transcription et l'analyse sémantique de contenu vidéo. Que ce soit pour des besoins en transcription précise, en analyse de sentiment, ou en évaluation de la clarté du discours, notre application est équipée pour répondre à vos exigences les plus strictes.</p>
+            <h3><strong>Fonctionnalités Clés :</strong></h3>
+            <ul>
+                <li><strong>Upload Simplifié :</strong> Téléchargez facilement vos vidéos dans les formats les plus courants (MP4, AVI, MOV) grâce à une interface intuitive.</li>
+                <li><strong>Extraction et Transcription Audio :</strong> Convertissez l'audio de vos vidéos en texte, permettant une analyse détaillée et une accessibilité accrue.</li>
+                <li><strong>Analyse Sémantique Avancée :</strong> Exploitez la puissance de GPT-4 pour une analyse sémantique profonde, révélant les nuances cachées dans vos transcriptions.</li>
+                <li><strong>Visualisation des Données :</strong> Notre outil génère des graphiques radar intuitifs pour une compréhension immédiate des dimensions clés de votre discours, telles que la positivité, la simplicité et l'utilité.</li>
+                <li><strong>Sécurité et Confidentialité :</strong> Avec une attention particulière portée à la sécurité de vos données, Personnalite.fr assure la protection de votre contenu tout au long du processus d'analyse.</li>
+            </ul>
+        </section>
+        <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
+    </div>
+    
+    <footer class="footer">
+        <ul>
+            <li id="social-in-menu" class="button_social_group">
+                <a target="_blank" rel="noopener" href="https://twitter.com/Personnalite_fr">
+                    <span class="screen-reader-text">Twitter</span>
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+                <a target="_blank" rel="noopener" href="https://www.linkedin.com/company/personnalit-/">
+                    <span class="screen-reader-text">LinkedIn</span>
+                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
+                <a target="_blank" rel="noopener" href="https://www.youtube.com/user/Personnalitefr">
+                    <span class="screen-reader-text">YouTube</span>
+                    <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </footer>
+</body>
+</html>

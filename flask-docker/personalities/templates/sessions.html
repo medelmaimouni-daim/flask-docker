@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Existing Sessions</title>
+    <!-- Include your stylesheet links here -->
+    <link rel="icon" href="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_32,h_32/https://personnalite.fr/wp-content/uploads/2021/06/cropped-Picto-Personnalite-32x32.png" sizes="32x32">
+    <link rel="icon" href="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_192,h_192/https://personnalite.fr/wp-content/uploads/2021/06/cropped-Picto-Personnalite-192x192.png" sizes="192x192">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+
+</head>
+<body>
+    <h1>Existing Sessions</h1>
+    
+    <div class="data-table-container">
+        {{ html_table_session|safe }}
+    </div>
+    <a href="{{ url_for('download_csv') }}" class="btn btn-secondary">Download CSV</a>
+    <a href="{{ url_for('upload') }}" class="btn btn-primary">Back to Upload</a>
+</body>
+</html>

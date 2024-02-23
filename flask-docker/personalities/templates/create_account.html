@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_32,h_32/https://personnalite.fr/wp-content/uploads/2021/06/cropped-Picto-Personnalite-32x32.png" sizes="32x32">
+    <link rel="icon" href="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_192,h_192/https://personnalite.fr/wp-content/uploads/2021/06/cropped-Picto-Personnalite-192x192.png" sizes="192x192">
+    <!-- Include Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+    <h1>Create New Account</h1>
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %}
+    <div class="container">
+    <form method="POST">
+        <label for="full_name">Full Name:</label>
+        <input type="text" id="full_name" name="full_name" required>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+            <!-- Only display the superadmin option if the current user is a superadmin -->
+            {% if session['role'] == 'superadmin' %}
+            <option value="superadmin">Super Admin</option>
+            {% endif %}
+        </select>
+        <button type="submit">Create Account</button>
+    </form>
+    </div>
+    <a href="{{ url_for('upload') }}" class="btn btn-primary">Back to Upload</a>
+</body>
+</html>
