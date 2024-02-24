@@ -28,6 +28,7 @@ from reportlab.platypus import Flowable
 import panel as pn
 from moviepy.editor import VideoFileClip
 from datetime import datetime
+from io import StringIO
 
 
 
@@ -370,7 +371,7 @@ Fournis les scores et commentaires dans un format qui peut être facilement inte
     with open(axes_analysis_path, 'w', encoding='utf-8') as filee:
         json.dump(response_axes_json, filee, ensure_ascii=False)
 
-    df = pd.read_csv(analysis_path, sep=';', encoding='latin1', index_col=False)
+    df = pd.read_csv(StringIO(response_text), sep=";")
 
     sanitized_detailled_data = sanitize_keys(analyzed_data)
 
@@ -539,10 +540,21 @@ def download_pdf():
 
     file_name = session.get('file_name', 'default_file_name')
     form_data = session.get('form_data', {'name': 'N/A', 'company': 'N/A', 'date': 'N/A'})
-    analysis_path = os.path.join('static', 'analysis', 'txt-json', f'{file_name}_analysis.txt')
     axes_radar_plot_path = os.path.join('static', 'analysis', 'radars', f'{file_name}_axes.png').replace('\\', '/')
     global_radar_plot_path = os.path.join('static', 'analysis', 'radars', f'{file_name}_global.png').replace('\\', '/')
-    df = pd.read_csv(analysis_path, sep=';', encoding='latin1', index_col=False)
+    id_session = form_data['id_session']
+    theme = form_data['theme']
+    # Reference to the sessions in the database
+    ref = db.reference("sessions")
+    data = ref.get()
+
+    # Get the next session number for the given id_session
+    current_session_number = get_current_session_number(ref, id_session)
+
+    data = data[id_session]["session_{i}".format(i = current_session_number)]
+
+    df = pd.DataFrame(data['df_elements'])  
+    
     detailled_analysis_path = os.path.join('static', 'analysis', 'txt-json', f'{file_name}_detailled.txt')
     score_df = fetch_score_data_from_firebase()
     global_score_df = fetch_global_scores_data_from_firebase()
@@ -550,19 +562,14 @@ def download_pdf():
     mean_score_df = score_df.groupby(['id_session', 'theme']).mean()
     mean_global_score_df = global_score_df.groupby(['id_session', 'theme']).mean()
    
-    id_session = form_data['id_session']
-    theme = form_data['theme']
+
     global_score_df = fetch_global_scores_data_from_firebase()
     global_score_df = global_score_df[global_score_df['id_session'] == id_session]
     if global_score_df.shape[0] > 1:
         global_fig = generate_radar_charts(global_score_df)
         global_fig.write_image(os.path.join( global_radar_plot_path.replace('/', os.sep)))
 
-    # Reference to the sessions in the database
-    sessions_ref = db.reference('sessions')
 
-    # Get the next session number for the given id_session
-    current_session_number = get_current_session_number(sessions_ref, id_session)
     # Load the detailed analysis data from JSON
     with open(detailled_analysis_path, 'r', encoding='utf-8') as json_file:
         detailed_data = json.load(json_file)
@@ -833,8 +840,6 @@ def download_hist_pdf(session_id):
     # Reference to the sessions in the database
     sessions_ref = db.reference('sessions')
 
-
-   
 
     # Wrap text
     last_col_index = len(df.columns) - 1

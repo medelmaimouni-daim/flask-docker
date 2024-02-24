@@ -1,4 +1,4 @@
-FROM ubuntu::22.04
+FROM ubuntu:22.04
 MAINTAINER mohamed.elmaimouni@d-aimafrica.com
 
 RUN apt-get update -y
@@ -9,6 +9,6 @@ COPY requirements.txt requirements.txt
 COPY personalities /opt/
 
 RUN pip3 install -r requirements.txt
-WORKID /opt/
+WORKDIR /opt/
 
-CMD ["gunicorn3", "-b", "0.0.0.0:8000", "app:app", "--workers=5"]
+CMD ["gunicorn3", "-b", "0.0.0.0:8000", "app:app", "--workers=5", "--timeout=1200"]
